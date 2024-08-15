@@ -1,8 +1,8 @@
 <?php 
 //variables to config.php
-$username = "Your username";
-$password = "Your password";
-$hostname = "Your host";
-$database = "Your Database";
+$username = "php_worker";
+$password = "php_worker";
+$hostname = "localhost";
+$database = "task_list";
 // $port     = "Port here";
 ?>
