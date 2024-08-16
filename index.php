@@ -1,5 +1,10 @@
 <?php
-// require('php/action-task.php');
+require_once('php/config.php');
+
+$task = $_REQUEST['task'];
+
+$query = $conn->prepare("SELECT task_name FROM tasks");
+$query->execute();
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -18,15 +23,17 @@
         <label for="">Nome:</label>
         <input type="text" name="task" class="">
         <!-- Submit -->
-        <input type="submit" name="Submit">
+        <input type="submit" name="Submit" class="bg-green-500">
     </form>
     <div class="bg-slate-200">
         <table>
             <tr>
-                <th>Tarefas</th>
+                <?php foreach ($query as $tasks): ?>
+                    <th><?= $tasks ?></th>
+                <?php endforeach; ?>
             </tr>
             <tr>
-                <td>Tarefa 1</td>
+                <td>tarefa</td>
             </tr>
             <tr>
                 <td><button class="bg-yellow-500"><a href="#editar">Editar</a></button></td>
