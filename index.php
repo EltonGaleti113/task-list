@@ -1,10 +1,9 @@
 <?php
 require_once('php/config.php');
 
-$task = $_REQUEST['task'];
+$sql = "SELECT * FROM tasks";
 
-$query = $conn->prepare("SELECT task_name FROM tasks");
-$query->execute();
+$dados = mysqli_query($conn, $sql);
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -28,17 +27,23 @@ $query->execute();
     <div class="bg-slate-200">
         <table>
             <tr>
-                <?php foreach ($query as $tasks): ?>
-                    <th><?= $tasks ?></th>
-                <?php endforeach; ?>
+                <th></th>
             </tr>
+            <!-- Faz a busca das tarefas -->
             <tr>
-                <td>tarefa</td>
+                <?php
+                while ($linha = mysqli_fetch_assoc($dados)) {
+                    $show_task = $linha['task_name'];
+                    $rows= mysqli_num_rows($dados);
+                ?>
+                        <td><?= $show_task ?></td>
+                        <td><button class="bg-yellow-500"><a href="#editar">Editar</a></button></td>
+                        <td><button class="bg-red-600"><a href="#excluir">Excluir</a></button></td>
             </tr>
-            <tr>
-                <td><button class="bg-yellow-500"><a href="#editar">Editar</a></button></td>
-                <td><button class="bg-red-600"><a href="#excluir">Excluir</a></button></td>
-            </tr>
+    <?php
+                }
+
+    ?>
         </table>
     </div>
 </body>
