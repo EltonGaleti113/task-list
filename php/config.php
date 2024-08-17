@@ -1,6 +1,11 @@
 <?php 
+//set variables in env.php
+require_once('env.php');
 
-$username = "php_worker";
-$password = "php_worker";
+    $conn = new mysqli($hostname, $username, $password, $database);
 
+    if($conn->connect_errno){
+        echo "Failed to connect to mysqli: ". $conn -> connect_error;
+        exit();
+    }
 ?>
