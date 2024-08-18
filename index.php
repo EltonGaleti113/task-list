@@ -1,21 +1,12 @@
 <?php
+require 'navigation_assets/header.php';
 require_once('php/config.php');
 
 $sql = "SELECT * FROM tasks";
 
 $dados = mysqli_query($conn, $sql);
 ?>
-<!DOCTYPE html>
-<html lang="pt-br">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task List</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-
-<body class='bg-slate-600'>
     <h1>Olá Bem-Vindo</h1>
     <!-- Formulário que recebe input $task -->
     <form action="php/action-task.php" method="post">
@@ -37,7 +28,7 @@ $dados = mysqli_query($conn, $sql);
                     $rows= mysqli_num_rows($dados);
                 ?>
                         <td><?= $show_task ?></td>
-                        <td><button class="bg-yellow-500"><a href="#editar">Editar</a></button></td>
+                        <td><button class="bg-yellow-500"><a href="/php/edit-task.php">Editar</a></button></td>
                         <td><button class="bg-red-600"><a href="#excluir">Excluir</a></button></td>
             </tr>
     <?php
@@ -46,6 +37,6 @@ $dados = mysqli_query($conn, $sql);
     ?>
         </table>
     </div>
-</body>
-
-</html>
+<?php 
+require 'navigation_assets/footer.php';
+?>
